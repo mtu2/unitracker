@@ -1,0 +1,8 @@
+.app {
+  display: flex;
+  flex-direction: row;
+}
+
+.page {
+  padding: 32px 40px;
+}

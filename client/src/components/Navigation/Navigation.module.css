@@ -1,0 +1,46 @@
+.navigation {
+  width: 180px;
+  height: 100vh;
+  background-color: #54c28e;
+  color: #ffffff;
+  text-align: left;
+  padding: 36px 20px;
+}
+
+.navigation h1 {
+  color: #ffffff;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 32px;
+}
+
+.navItemGroup {
+  margin: 32px 0px;
+}
+
+.navItemGroup p {
+  font-size: 11px;
+  font-weight: 300;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.navigation ul li {
+  display: grid;
+  grid-template-columns: 30px auto;
+  font-size: 15px;
+  font-weight: 400;
+  margin-top: 12px;
+}
+
+.navigation ul li:hover {
+  cursor: pointer;
+  color: #c3ffe2;
+}
+
+.icon {
+  margin-right: 8px;
+  width: 32px;
+  text-align: center;
+}
