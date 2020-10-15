@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Subject.module.css";
 
-import DropdownMenu from "../../DropdownMenu/DropdownMenu";
+import DropdownMenu from "../../UI/DropdownMenu/DropdownMenu";
 import { ReactComponent as VertDotsIcon } from "../../../assets/icons/more_vert-20px.svg";
 import { calcLetterGrade } from "../../../utils/grades";
 

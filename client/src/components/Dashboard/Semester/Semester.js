@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Semester.module.css";
 
 import Subject from "./Subject";
-import DropdownMenu from "../../DropdownMenu/DropdownMenu";
+import DropdownMenu from "../../UI/DropdownMenu/DropdownMenu";
 import { ReactComponent as MenuIcon } from "../../../assets/icons/menu-20px.svg";
 import { formatWAM, calcLetterGrade } from "../../../utils/grades";
 
