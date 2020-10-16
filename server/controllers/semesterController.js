@@ -18,9 +18,10 @@ module.exports = {
     }
   },
   create: async function (req, res) {
-    const name = req.body.name;
-    const completed = req.body.completed;
-    const newSemester = new Semester({ name, completed });
+    const newSemester = new Semester({
+      name: req.body.name,
+      completed: req.body.completed,
+    });
 
     try {
       await newSemester.save();
