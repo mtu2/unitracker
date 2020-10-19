@@ -1,19 +1,24 @@
 import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import styles from "./App.module.css";
 
 import Navigation from "../Navigation/Navigation";
-import WelcomeMessage from "../WelcomeMessage/WelcomeMessage";
 import Dashboard from "../Dashboard/Dashboard";
+import SemesterBoard from "../SemesterBoard/SemesterBoard";
+import CourseBoard from "../CourseBoard/CourseBoard";
 
 function App() {
   return (
-    <div className={styles.app}>
-      <Navigation className={styles.navigation} />
-      <div className={styles.page}>
-        <WelcomeMessage />
-        <Dashboard />
+    <Router>
+      <div className={styles.app}>
+        <Navigation className={styles.navigation} />
+        <div className={styles.page}>
+          <Route path="/" exact component={Dashboard} />
+          <Route path="/semesters" component={SemesterBoard} />
+          <Route path="/courses" component={CourseBoard} />
+        </div>
       </div>
-    </div>
+    </Router>
   );
 }
 

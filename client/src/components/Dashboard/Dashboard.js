@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./Dashboard.module.css";
-import Semester from "./Semester/Semester";
+
+import WelcomeMessage from "./WelcomeMessage/WelcomeMessage";
+import Semester from "./SemesterSummary/Semester";
 
 const DUMMY_SEMESTER_DATA = [
   {
@@ -82,11 +84,14 @@ const DUMMY_SEMESTER_DATA = [
 
 function Dashboard() {
   return (
-    <div className={styles.dashboard}>
-      {DUMMY_SEMESTER_DATA.map((semesterData, index) => (
-        <Semester key={index} {...semesterData} />
-      ))}
-    </div>
+    <>
+      <WelcomeMessage />
+      <div className={styles.dashboard}>
+        {DUMMY_SEMESTER_DATA.map((semesterData, index) => (
+          <Semester key={index} {...semesterData} />
+        ))}
+      </div>
+    </>
   );
 }
 

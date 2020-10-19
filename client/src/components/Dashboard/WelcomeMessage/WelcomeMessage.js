@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./WelcomeMessage.module.css";
-import { DAYS, MONTHS } from "../../utils/dates";
+import { DAYS, MONTHS } from "../../../utils/dates";
 
 const getTimeMessage = (name) => {
   const hour = new Date().getHours();

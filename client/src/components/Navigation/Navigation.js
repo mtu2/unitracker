@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./Navigation.module.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,11 +17,16 @@ import {
 function Navigation() {
   return (
     <div className={styles.navigation}>
-      <h1>UniTracker</h1>
+      <Link to="/" className={styles.logoLink}>
+        <h1>UniTracker</h1>
+      </Link>
+
       <ul>
         <li>
-          <FontAwesomeIcon icon={faHome} className={styles.icon} />
-          Dashboard
+          <Link to="/" className={styles.itemLink}>
+            <FontAwesomeIcon icon={faHome} className={styles.icon} />
+            Dashboard
+          </Link>
         </li>
       </ul>
 
@@ -28,12 +34,16 @@ function Navigation() {
         <p>Analyse</p>
         <ul>
           <li>
-            <FontAwesomeIcon icon={faBook} className={styles.icon} />
-            Reports
+            <Link to="/" className={styles.itemLink}>
+              <FontAwesomeIcon icon={faBook} className={styles.icon} />
+              Reports
+            </Link>
           </li>
           <li>
-            <FontAwesomeIcon icon={faChartLine} className={styles.icon} />
-            Insights
+            <Link to="/" className={styles.itemLink}>
+              <FontAwesomeIcon icon={faChartLine} className={styles.icon} />
+              Insights
+            </Link>
           </li>
         </ul>
       </div>
@@ -42,16 +52,22 @@ function Navigation() {
         <p>Manage</p>
         <ul>
           <li>
-            <FontAwesomeIcon icon={faCalendarDay} className={styles.icon} />
-            Semesters
+            <Link to="/semesters" className={styles.itemLink}>
+              <FontAwesomeIcon icon={faCalendarDay} className={styles.icon} />
+              Semesters
+            </Link>
           </li>
           <li>
-            <FontAwesomeIcon icon={faBookOpen} className={styles.icon} />
-            Subjects
+            <Link to="/" className={styles.itemLink}>
+              <FontAwesomeIcon icon={faBookOpen} className={styles.icon} />
+              Subjects
+            </Link>
           </li>
           <li>
-            <FontAwesomeIcon icon={faSchool} className={styles.icon} />
-            Courses
+            <Link to="/courses" className={styles.itemLink}>
+              <FontAwesomeIcon icon={faSchool} className={styles.icon} />
+              Courses
+            </Link>
           </li>
         </ul>
       </div>
@@ -60,12 +76,19 @@ function Navigation() {
         <p>Customise</p>
         <ul>
           <li>
-            <FontAwesomeIcon icon={faCog} className={styles.icon} />
-            Settings
+            <Link to="/" className={styles.itemLink}>
+              <FontAwesomeIcon icon={faCog} className={styles.icon} />
+              Settings
+            </Link>
           </li>
           <li>
-            <FontAwesomeIcon icon={faQuestionCircle} className={styles.icon} />
-            Help
+            <Link to="/" className={styles.itemLink}>
+              <FontAwesomeIcon
+                icon={faQuestionCircle}
+                className={styles.icon}
+              />
+              Help
+            </Link>
           </li>
         </ul>
       </div>
