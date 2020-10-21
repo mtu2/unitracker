@@ -11,7 +11,8 @@ html {
   font-family: "Roboto", sans-serif;
 }
 body {
-  background: #f7f9fc;
+  background: linear-gradient(180deg, #ffffff 0%, #f1e7e5 46.35%, #ebe2e2 100%);
+  backdrop-filter: blur(4px);
 }
 html::-webkit-scrollbar {
   display: none;

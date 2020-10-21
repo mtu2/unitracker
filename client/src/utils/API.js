@@ -1,21 +1,18 @@
 import axios from "axios";
 
-export const semesterAPI = {
-  // Semester AJAX requests
-  getAll: () => axios.get("/api/semesters"),
-  getById: (id) => axios.get(`/api/semesters/${id}`),
-  create: (semesterData) => axios.post("/api/semesters", semesterData),
-  update: (id, semesterData) => axios.put(`/api/semesters/${id}`, semesterData),
-  delete: (id) => axios.delete(`/api/semesters/${id}`),
-};
+export const listAPI = {
+  // List AJAX requests
+  getAll: () => axios.get("/api/lists"),
+  create: (listData) => axios.post("/api/lists", listData),
 
-export const courseAPI = {
-  // Course AJAX requests
-  getAll: () => axios.get("/api/courses"),
-  getById: (id) => axios.get(`/api/courses/${id}`),
-  create: (courseData) => axios.post("/api/courses", courseData),
-  update: (id, courseData) => axios.put(`/api/courses/${id}`, courseData),
-  delete: (id) => axios.delete(`/api/courses/${id}`),
-};
+  getById: (id) => axios.get(`/api/lists/${id}`),
+  update: (id, listData) => axios.put(`/api/lists/${id}`, listData),
+  delete: (id) => axios.delete(`/api/lists/${id}`),
 
-export const subjectAPI = {};
+  // Card AJAX requests
+  getCardById: (id, cardId) => axios.get(`/api/lists/${id}/cards/${cardId}`),
+  createCard: (id, cardData) => axios.post(`/api/lists/${id}/cards`, cardData),
+  updateCard: (id, cardId, cardData) =>
+    axios.put(`/api/lists/${id}/cards/${cardId}`, cardData),
+  deleteCard: (id, cardId) => axios.delete(`/api/lists/${id}/cards/${cardId}`),
+};

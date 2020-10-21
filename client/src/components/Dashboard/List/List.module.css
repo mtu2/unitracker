@@ -1,0 +1,22 @@
+.list {
+  min-width: 320px;
+  width: 320px;
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 4px;
+  margin-right: 12px;
+  padding: 20px 10px;
+  text-align: center;
+  position: relative;
+}
+.list h1 {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 16px;
+  color: #2c1338;
+}
+.list .menu {
+  position: absolute;
+  fill: rgba(0, 0, 0, 0.54);
+  top: 12px;
+  right: 16px;
+}

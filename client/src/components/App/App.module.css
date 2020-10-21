@@ -1,8 +1,6 @@
 .app {
   display: flex;
-  flex-direction: row;
-}
-
-.page {
-  padding: 32px 40px;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
 }

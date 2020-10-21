@@ -1,94 +1,42 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styles from "./Navigation.module.css";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBook,
-  faBookOpen,
-  faCalendarDay,
-  faChartLine,
-  faCog,
-  faHome,
-  faQuestionCircle,
-  faSchool,
-} from "@fortawesome/free-solid-svg-icons";
+import { ReactComponent as ExpandMoreIcon } from "../../assets/icons/expand_more-24px.svg";
+import { ReactComponent as BookmarksIcon } from "../../assets/icons/bookmarks-24px.svg";
+import { ReactComponent as AddIcon } from "../../assets/icons/add-24px.svg";
+import { ReactComponent as SettingsIcon } from "../../assets/icons/settings-24px.svg";
+import { ReactComponent as InfoIcon } from "../../assets/icons/info-24px.svg";
+import { ReactComponent as AccountIcon } from "../../assets/icons/perm_identity-24px.svg";
 
 function Navigation() {
   return (
     <div className={styles.navigation}>
-      <Link to="/" className={styles.logoLink}>
-        <h1>UniTracker</h1>
-      </Link>
-
-      <ul>
-        <li>
-          <Link to="/" className={styles.itemLink}>
-            <FontAwesomeIcon icon={faHome} className={styles.icon} />
+      <div className={styles.leftNavigation}>
+        <div className={styles.logo}></div>
+        <ul>
+          <li className={styles.iconAndTextItem}>
+            <ExpandMoreIcon className={styles.icon} />
             Dashboard
-          </Link>
-        </li>
-      </ul>
-
-      <div className={styles.navItemGroup}>
-        <p>Analyse</p>
-        <ul>
-          <li>
-            <Link to="/" className={styles.itemLink}>
-              <FontAwesomeIcon icon={faBook} className={styles.icon} />
-              Reports
-            </Link>
-          </li>
-          <li>
-            <Link to="/" className={styles.itemLink}>
-              <FontAwesomeIcon icon={faChartLine} className={styles.icon} />
-              Insights
-            </Link>
           </li>
         </ul>
       </div>
-
-      <div className={styles.navItemGroup}>
-        <p>Manage</p>
+      <div className={styles.rightNavigation}>
         <ul>
-          <li>
-            <Link to="/semesters" className={styles.itemLink}>
-              <FontAwesomeIcon icon={faCalendarDay} className={styles.icon} />
-              Semesters
-            </Link>
+          <li className={styles.iconAndTextItem}>
+            <BookmarksIcon className={styles.icon} />
+            Subjects
           </li>
-          <li>
-            <Link to="/" className={styles.itemLink}>
-              <FontAwesomeIcon icon={faBookOpen} className={styles.icon} />
-              Subjects
-            </Link>
+          <li className={styles.iconAndTextItem}>
+            <AddIcon className={styles.icon} />
+            Add List
           </li>
-          <li>
-            <Link to="/courses" className={styles.itemLink}>
-              <FontAwesomeIcon icon={faSchool} className={styles.icon} />
-              Courses
-            </Link>
+          <li className={styles.iconItem}>
+            <SettingsIcon className={styles.icon} />
           </li>
-        </ul>
-      </div>
-
-      <div className={styles.navItemGroup}>
-        <p>Customise</p>
-        <ul>
-          <li>
-            <Link to="/" className={styles.itemLink}>
-              <FontAwesomeIcon icon={faCog} className={styles.icon} />
-              Settings
-            </Link>
+          <li className={styles.iconItem}>
+            <InfoIcon className={styles.icon} />
           </li>
-          <li>
-            <Link to="/" className={styles.itemLink}>
-              <FontAwesomeIcon
-                icon={faQuestionCircle}
-                className={styles.icon}
-              />
-              Help
-            </Link>
+          <li className={styles.iconItem}>
+            <AccountIcon className={styles.icon} />
           </li>
         </ul>
       </div>
