@@ -7,7 +7,7 @@
   border-radius: 4px;
 
   color: white;
-  font-size: 14px;
+  font-size: 13px;
   cursor: pointer;
 }
 
@@ -17,7 +17,7 @@
   text-align: left;
 }
 .description {
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: 16px;
   text-align: left;
 }

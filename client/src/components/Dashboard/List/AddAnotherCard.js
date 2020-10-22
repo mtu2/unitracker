@@ -1,22 +1,31 @@
 import React, { useState } from "react";
 import styles from "./AddAnotherCard.module.css";
 
-import Datetime from "react-datetime";
+import { GithubPicker } from "react-color";
+import { formatDates } from "../../../utils/dates";
+import { textColorFromBgColor } from "../../../utils/colors";
 import OutsideClickHandler from "react-outside-click-handler";
 import { Grow } from "@material-ui/core";
+import { DateTimePicker } from "@material-ui/pickers";
 import { ReactComponent as AddIcon } from "../../../assets/icons/add-24px.svg";
+import { ReactComponent as CalendarIcon } from "../../../assets/icons/calendar_today-14px.svg";
+import { ReactComponent as PaletteIcon } from "../../../assets/icons/palette-14px.svg";
 
-const DEFAULT_COLOR = "rgba(255, 255, 255, 0.6)";
+const DEFAULT_COLOR = "#F6F2F2";
 
 function AddAnotherCard(props) {
-  const [open, setOpen] = useState(false);
   const [subject, setSubject] = useState("");
   const [description, setDescription] = useState("");
-  const [dueDate, setDueDate] = useState(Date.now()); //change to none
+  const [dueDate, setDueDate] = useState(null);
   const [color, setColor] = useState(DEFAULT_COLOR);
 
   const [subjectNumOfLines, setSubjectNumOfLines] = useState(1);
   const [descriptionNumOfLines, setDescriptionNumOfLines] = useState(1);
+
+  const [open, setOpen] = useState(false);
+  const [openPalette, setOpenPalette] = useState(false);
+  const [openDateTime, setOpenDateTime] = useState(false);
+  const [disableHandleOpenClose, setDisableHandleOpenClose] = useState(false);
 
   function handleSubjectChange(ev) {
     setSubject(ev.target.value);
@@ -35,18 +44,38 @@ function AddAnotherCard(props) {
   }
 
   function handleOpenClose() {
-    console.log(open);
+    if (disableHandleOpenClose) return;
     if (!open) return setOpen(true);
 
     if (subject !== "" && description !== "" && color !== "") {
       props.createCard({ subject, description, color, dueDate });
       // if duedate is empty dont create with duedate
     }
+
     setSubject("");
     setDescription("");
-    setDueDate(Date.now());
+    setDueDate(null);
     setColor(DEFAULT_COLOR);
+
     setOpen(false);
+    setOpenPalette(false);
+    setOpenDateTime(false);
+    setDisableHandleOpenClose(false);
+  }
+
+  function handleOpenPalette() {
+    setOpenPalette(!openPalette);
+  }
+
+  function handleOpenDateTime() {
+    if (!openDateTime) {
+      // Open DateTime Picker
+      setDisableHandleOpenClose(true);
+    } else {
+      // Close DateTime Picker
+      setDisableHandleOpenClose(false);
+    }
+    setOpenDateTime(!openDateTime);
   }
 
   return (
@@ -54,8 +83,14 @@ function AddAnotherCard(props) {
       {open ? (
         <OutsideClickHandler onOutsideClick={handleOpenClose}>
           <Grow in={open}>
-            <form>
-              <div className={styles.addCard} style={{ background: color }}>
+            <form style={{ position: "relative" }}>
+              <div
+                className={styles.addCard}
+                style={{
+                  background: color,
+                  color: textColorFromBgColor(color),
+                }}
+              >
                 <textarea
                   className={styles.subject}
                   value={subject}
@@ -71,14 +106,43 @@ function AddAnotherCard(props) {
                   onChange={handleDescriptionChange}
                   rows={descriptionNumOfLines}
                 />
-                <textarea
-                  className={styles.dueDate}
-                  value={dueDate}
-                  onChange={(ev) => setDueDate(ev.target.value)}
-                />
-                <Datetime />
+                <div>
+                  <PaletteIcon
+                    onClick={handleOpenPalette}
+                    className={styles.icon}
+                  />
+                  <CalendarIcon
+                    onClick={handleOpenDateTime}
+                    className={styles.icon}
+                  />
+                  {dueDate && (
+                    <p className={styles.dueDate} onClick={handleOpenDateTime}>
+                      {formatDates(dueDate)}
+                    </p>
+                  )}
+                </div>
               </div>
-              <div className={styles.addButton}></div>
+              {openPalette && (
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: "-62px",
+                    left: "10px",
+                  }}
+                >
+                  <GithubPicker
+                    onChangeComplete={(color) => setColor(color.hex)}
+                  />
+                </div>
+              )}
+              <DateTimePicker
+                open={openDateTime}
+                variant="inline"
+                value={dueDate}
+                onChange={setDueDate}
+                onClose={handleOpenDateTime}
+                style={{ width: "0px", height: "0px" }}
+              />
             </form>
           </Grow>
         </OutsideClickHandler>

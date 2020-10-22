@@ -1,10 +1,17 @@
 import React from "react";
 import styles from "./Card.module.css";
 import { formatDates } from "../../../utils/dates";
+import { textColorFromBgColor } from "../../../utils/colors";
 
 function Card(props) {
   return (
-    <div className={styles.card} style={{ background: props.color }}>
+    <div
+      className={styles.card}
+      style={{
+        background: props.color,
+        color: textColorFromBgColor(props.color),
+      }}
+    >
       <p className={styles.subject}>{props.subject}</p>
       <p className={styles.description}>{props.description}</p>
       <p className={styles.dueDate}>{formatDates(props.dueDate)}</p>

@@ -5,15 +5,18 @@ import styles from "./App.module.css";
 import Navigation from "../Navigation/Navigation";
 import Dashboard from "../Dashboard/Dashboard";
 
-import "react-datetime/css/react-datetime.css"; // import css for datetime
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import LuxonUtils from "@date-io/luxon";
 
 function App() {
   return (
     <Router>
-      <div className={styles.app}>
-        <Navigation className={styles.navigation} />
-        <Route path="/" exact component={Dashboard} />
-      </div>
+      <MuiPickersUtilsProvider utils={LuxonUtils}>
+        <div className={styles.app}>
+          <Navigation className={styles.navigation} />
+          <Route path="/" exact component={Dashboard} />
+        </div>
+      </MuiPickersUtilsProvider>
     </Router>
   );
 }
