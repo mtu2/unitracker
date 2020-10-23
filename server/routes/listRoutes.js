@@ -16,5 +16,6 @@ router
   .get(listController.findCardById)
   .put(listController.updateCard)
   .delete(listController.deleteCard);
+router.route("/:id/cards/:index").delete(listController.deleteCardByIndex);
 
 module.exports = router;
