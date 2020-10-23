@@ -1,6 +1,5 @@
 .menu {
   position: relative;
-  font-size: 14px;
 }
 
 .menu p:hover {
@@ -15,14 +14,5 @@
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
   background: #ffffff;
   padding: 4px;
-}
-
-.dropdown p {
-  padding: 8px;
-  border-radius: 5px;
-}
-
-.dropdown p:hover {
-  background: rgba(241, 241, 241, 0.45);
-  cursor: pointer;
+  z-index: 100;
 }

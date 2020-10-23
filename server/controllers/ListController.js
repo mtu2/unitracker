@@ -71,8 +71,8 @@ module.exports = {
     try {
       const list = await List.findById(req.params.id);
       list.cards.push(newCard);
-      await list.save();
-      res.json("Card added to list");
+      const newList = await list.save();
+      res.json(newList.cards);
     } catch (err) {
       res.status(400).json("Error: " + err);
     }

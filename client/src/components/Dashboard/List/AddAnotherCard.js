@@ -48,14 +48,19 @@ function AddAnotherCard(props) {
     if (!open) return setOpen(true);
 
     if (subject !== "" && description !== "" && color !== "") {
-      props.createCard({ subject, description, color, dueDate });
-      // if duedate is empty dont create with duedate
+      const newCard = { subject, description, color, dueDate };
+      if (newCard["dueDate"] === null) delete newCard["dueDate"];
+      props.createCard(newCard);
     }
 
+    // Set to default
     setSubject("");
     setDescription("");
     setDueDate(null);
     setColor(DEFAULT_COLOR);
+
+    setSubjectNumOfLines(1);
+    setDescriptionNumOfLines(1);
 
     setOpen(false);
     setOpenPalette(false);
