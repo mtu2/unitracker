@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./DropdownMenuItem.module.css";
+import styles from "./DropdownMenuItem.module.scss";
 
 function DropdownMenuItem(props) {
   return (

@@ -1,0 +1,39 @@
+@import "../../../styles/config";
+
+.list {
+  position: relative;
+  text-align: center;
+
+  width: 320px;
+  min-width: 320px;
+  margin-right: 12px;
+  padding: 20px 10px;
+
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: $small-border-radius;
+
+  h1 {
+    margin-bottom: 16px;
+    font-weight: 700;
+    font-size: $large-font-size;
+    color: $dark-text-color;
+  }
+  .menu {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+
+    padding: 3px 3px 0px 3px;
+
+    fill: $svg-icon-fill;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: $medium-border-radius;
+    transition: all 0.1s ease-in;
+
+    &:hover {
+      border: $default-border;
+      box-shadow: $default-box-shadow;
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+}

@@ -1,0 +1,42 @@
+@import "../../../../styles/config";
+@import "../../../../styles/card-element";
+
+/* Card Styling */
+.card {
+  @extend %card-element;
+  position: relative;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  /* Menu Styling */
+  &:hover .menu {
+    visibility: visible;
+  }
+  .menu {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+
+    padding: 3px 3px 0px 3px;
+
+    background: rgba(255, 255, 255, 0.3);
+    border: $default-border;
+    border-radius: $medium-border-radius;
+    box-shadow: $default-box-shadow;
+    fill: $svg-icon-fill;
+    transition: all 0.1s ease-in;
+
+    &:hover {
+      background: rgba(241, 241, 241, 0.6);
+    }
+  }
+  .unfocused {
+    visibility: hidden;
+  }
+  .focused {
+    visibility: visible;
+    background: rgba(241, 241, 241, 0.6);
+  }
+}

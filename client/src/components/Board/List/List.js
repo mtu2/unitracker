@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import styles from "./List.module.css";
+import styles from "./List.module.scss";
 
-import Card from "./Card";
-import AddAnotherCard from "./AddAnotherCard";
+import Card from "./Card/Card";
+import AddCard from "./AddCard/AddCard";
 import DropdownMenu from "../../UI/DropdownMenu/DropdownMenu";
 import DropdownMenuItem from "../../UI/DropdownMenu/DropdownMenuItem/DropdownMenuItem";
 import { listAPI } from "../../../utils/API";
@@ -52,7 +52,7 @@ function List(props) {
       {cards.map((cardData, index) => (
         <Card key={index} {...cardData} deleteCard={handleDeleteCard} />
       ))}
-      <AddAnotherCard createCard={handleCreateCard} />
+      <AddCard createCard={handleCreateCard} />
     </div>
   );
 }

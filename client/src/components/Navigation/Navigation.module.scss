@@ -1,0 +1,75 @@
+@import "../../styles/config";
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 20px 30px;
+
+  color: $dark-text-color;
+  font-size: $medium-font-size;
+  font-weight: 700;
+
+  .leftContainer {
+    display: flex;
+    flex-direction: row;
+
+    .logo {
+      width: 30px;
+      height: 30px;
+
+      background: conic-gradient(
+        from 180deg at 50% 50%,
+        #2d4466 0deg,
+        rgba(70, 102, 149, 0) 360deg
+      );
+      border: 1px solid rgba(25, 4, 69, 0.1);
+      box-shadow: 0px 3px 7px rgba(25, 4, 69, 0.05);
+      border-radius: $small-border-radius;
+    }
+  }
+
+  .rightContainer {
+    ul {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    height: 30px;
+    margin-left: 6px;
+
+    list-style-type: none;
+    background: #ffffff;
+    border: 1px solid rgba(25, 4, 69, 0.1);
+    box-shadow: $default-box-shadow;
+    border-radius: $small-border-radius;
+
+    &:hover {
+      background: rgba(125, 125, 125, 0.1);
+      cursor: pointer;
+    }
+  }
+
+  .icon {
+    fill: $svg-icon-fill;
+  }
+  .item {
+    &Icon {
+      padding: 3px;
+    }
+    &IconText {
+      padding: 3px 16px 3px 8px;
+      .icon {
+        margin-right: 6px;
+      }
+    }
+  }
+}

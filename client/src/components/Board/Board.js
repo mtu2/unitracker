@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import styles from "./Dashboard.module.css";
+import styles from "./Board.module.scss";
 import List from "./List/List";
 import { listAPI } from "../../utils/API";
 
-function Dashboard() {
+function Board() {
   const [listsData, setListsData] = useState([]);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ function Dashboard() {
   }, []);
 
   return (
-    <div className={styles.dashboard}>
+    <div className={styles.board}>
       {listsData.map((listData, index) => (
         <List key={index} {...listData} />
       ))}
@@ -23,4 +23,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Board;

@@ -1,0 +1,28 @@
+%card-element {
+  padding: 10px 18px;
+  margin-bottom: 8px;
+
+  border: $default-border;
+  border-radius: $small-border-radius;
+  box-shadow: $default-box-shadow;
+  font-size: $small-font-size;
+
+  &:hover {
+    border: $float-border;
+    box-shadow: $float-box-shadow;
+  }
+  .subject {
+    font-weight: 500;
+    margin-bottom: 6px;
+    text-align: left;
+  }
+  .description {
+    font-weight: 400;
+    margin-bottom: 16px;
+    text-align: left;
+  }
+  .dueDate {
+    font-weight: 500;
+    text-align: right;
+  }
+}

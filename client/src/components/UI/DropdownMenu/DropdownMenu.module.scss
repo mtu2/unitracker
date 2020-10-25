@@ -1,0 +1,20 @@
+@import "../../../styles/config";
+
+.dropdownMenu {
+  position: relative;
+
+  p:hover {
+    cursor: pointer;
+  }
+
+  .dropdown {
+    width: 140px;
+    position: absolute;
+    transform: translateX(-65%);
+    border-radius: $small-border-radius;
+    box-shadow: $dropdown-box-shadow;
+    background: #ffffff;
+    padding: 4px;
+    z-index: 100;
+  }
+}
