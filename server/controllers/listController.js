@@ -85,11 +85,12 @@ module.exports = {
       color: req.body.color,
     };
     try {
-      await List.findOneAndUpdate(
+      const newList = await List.findOneAndUpdate(
         { _id: req.params.id, "cards._id": req.params.cardId },
-        { $set: { "cards.$": updatedCard } }
+        { $set: { "cards.$": updatedCard } },
+        { new: true } // new = true, returns updated result
       );
-      res.json("Card updated");
+      res.json(newList.cards);
     } catch (err) {
       res.status(400).json("Error: " + err);
     }

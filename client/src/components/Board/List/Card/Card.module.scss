@@ -1,7 +1,7 @@
 @import "../../../../styles/config";
 @import "../../../../styles/card-element";
 
-/* Card Styling */
+/* Card */
 .card {
   @extend %card-element;
   position: relative;
@@ -38,5 +38,42 @@
   .focused {
     visibility: visible;
     background: rgba(241, 241, 241, 0.6);
+  }
+}
+
+/* Edit Card */
+.editCard {
+  @extend %card-element;
+  display: flex;
+  flex-direction: column;
+
+  textarea {
+    border: none;
+    background-color: transparent;
+    overflow: hidden;
+    resize: none;
+    outline: none;
+    color: inherit;
+  }
+  .subject {
+    max-height: 34px;
+  }
+  .dueDate {
+    float: right;
+
+    &:hover {
+      cursor: pointer;
+      text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+    }
+  }
+  .icon {
+    float: left;
+    margin-right: 12px;
+    fill: rgba(0, 0, 0, 0.6);
+
+    &:hover {
+      cursor: pointer;
+      fill: rgba(0, 0, 0, 1);
+    }
   }
 }

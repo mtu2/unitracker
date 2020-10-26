@@ -25,26 +25,27 @@ function AddCard(props) {
   const [open, setOpen] = useState(false);
   const [openPalette, setOpenPalette] = useState(false);
   const [openDateTime, setOpenDateTime] = useState(false);
-  const [disableHandleOpenClose, setDisableHandleOpenClose] = useState(false);
-
-  function handleSubjectChange(ev) {
-    setSubject(ev.target.value);
-    const lines = calcNumOfLines(ev.target.value.length);
-    if (subjectNumOfLines !== lines) setSubjectNumOfLines(lines);
-  }
-  function handleDescriptionChange(ev) {
-    setDescription(ev.target.value);
-    const lines = calcNumOfLines(ev.target.value.length);
-    if (descriptionNumOfLines !== lines) setDescriptionNumOfLines(lines);
-  }
+  const [disableOpenClose, setDisableOpenClose] = useState(false);
 
   function calcNumOfLines(textLength) {
     const textLengthPerLine = 35;
     return 1 + Math.floor(textLength / textLengthPerLine);
   }
 
+  function handleSubjectChange(ev) {
+    setSubject(ev.target.value);
+    const lines = calcNumOfLines(ev.target.value.length);
+    if (subjectNumOfLines !== lines) setSubjectNumOfLines(lines);
+  }
+
+  function handleDescriptionChange(ev) {
+    setDescription(ev.target.value);
+    const lines = calcNumOfLines(ev.target.value.length);
+    if (descriptionNumOfLines !== lines) setDescriptionNumOfLines(lines);
+  }
+
   function handleOpenClose() {
-    if (disableHandleOpenClose) return;
+    if (disableOpenClose) return;
     if (!open) return setOpen(true);
 
     if (subject !== "" && description !== "" && color !== "") {
@@ -65,7 +66,7 @@ function AddCard(props) {
     setOpen(false);
     setOpenPalette(false);
     setOpenDateTime(false);
-    setDisableHandleOpenClose(false);
+    setDisableOpenClose(false);
   }
 
   function handleOpenPalette() {
@@ -75,14 +76,15 @@ function AddCard(props) {
   function handleOpenDateTime() {
     if (!openDateTime) {
       // Open DateTime Picker
-      setDisableHandleOpenClose(true);
+      setDisableOpenClose(true);
     } else {
       // Close DateTime Picker
-      setDisableHandleOpenClose(false);
+      setDisableOpenClose(false);
     }
     setOpenDateTime(!openDateTime);
   }
 
+  // Render AddCardPrompt if not open
   if (!open)
     return (
       <div className={styles.addCardPrompt} onClick={handleOpenClose}>
@@ -91,6 +93,7 @@ function AddCard(props) {
       </div>
     );
 
+  // Render AddCard if open
   return (
     <OutsideClickHandler onOutsideClick={handleOpenClose}>
       <Grow in={open}>

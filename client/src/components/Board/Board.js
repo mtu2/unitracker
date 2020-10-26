@@ -5,7 +5,7 @@ import { listAPI } from "../../utils/API";
 
 function Board() {
   const [listsData, setListsData] = useState([]);
-
+  console.log("Board rendered");
   useEffect(() => {
     async function fetchListsData() {
       const res = await listAPI.getAll();

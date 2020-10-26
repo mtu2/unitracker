@@ -14,6 +14,7 @@ import { ReactComponent as DeleteForeverIcon } from "../../../assets/icons/delet
 
 function List(props) {
   const [cards, setCards] = useState([]);
+  console.log("List rendered");
 
   useEffect(() => {
     setCards(props.cards);
@@ -33,8 +34,18 @@ function List(props) {
     setCards(newList.data);
   }
   function handleDeleteCard(cardId) {
-    setCards((prevCards) => prevCards.filter((el) => el._id !== cardId));
+    setCards((prevCards) => prevCards.filter((card) => card._id !== cardId));
     listAPI.deleteCard(props._id, cardId);
+  }
+  async function handleUpdateCard(cardId, updatedCard) {
+    console.log(cardId);
+    setCards((prevCards) =>
+      prevCards.map((card) => (card._id === cardId ? updatedCard : card))
+    );
+
+    // Send to backend and update any (e.g. card ._id)
+    const newList = await listAPI.updateCard(props._id, cardId, updatedCard);
+    setCards(newList.data);
   }
 
   return (
@@ -50,7 +61,12 @@ function List(props) {
         />
       </DropdownMenu>
       {cards.map((cardData, index) => (
-        <Card key={index} {...cardData} deleteCard={handleDeleteCard} />
+        <Card
+          key={index}
+          {...cardData}
+          deleteCard={handleDeleteCard}
+          updateCard={handleUpdateCard}
+        />
       ))}
       <AddCard createCard={handleCreateCard} />
     </div>
@@ -58,3 +74,5 @@ function List(props) {
 }
 
 export default List;
+
+// TEST SPEED: Implementing React.memo on Card and useContext on passed functions. Change handleCreateCard to update just latest card and not full list.

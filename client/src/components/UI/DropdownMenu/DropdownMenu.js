@@ -18,9 +18,7 @@ const DropdownMenu = (props) => {
   return (
     <div className={`${styles.dropdownMenu} ${props.className}`}>
       <OutsideClickHandler onOutsideClick={onClose}>
-        <a href="/#" onClick={() => (open ? onClose() : onOpen())}>
-          {props.icon}
-        </a>
+        <div onClick={() => (open ? onClose() : onOpen())}>{props.icon}</div>
         <Fade in={open}>
           <div className={styles.dropdown}>{props.children}</div>
         </Fade>
