@@ -179,21 +179,30 @@ function EditCard(props) {
           <div
             style={{
               position: "absolute",
-              bottom: "-62px",
-              left: "10px",
+              "z-index": "100",
+              bottom: "-84px",
+              left: "8px",
             }}
+            // TODO: move styles to styles.paletteContainer - BUG (NOT WORKING)
           >
             <GithubPicker onChangeComplete={(color) => setColor(color.hex)} />
           </div>
         )}
-        <DateTimePicker
-          open={openDateTime}
-          variant="inline"
-          value={dueDate}
-          onChange={setDueDate}
-          onClose={handleOpenDateTime}
-          style={{ width: "0px", height: "0px" }}
-        />
+        <div
+          style={{ position: "absolute", top: "0px", left: "0px" }}
+          // TODO: move styles to styles.dateTimeContainer - BUG (NOT WORKING)
+        >
+          <DateTimePicker
+            style={{
+              width: "0px",
+              height: "0px",
+            }}
+            open={openDateTime}
+            value={dueDate}
+            onChange={setDueDate}
+            onClose={handleOpenDateTime}
+          />
+        </div>
       </form>
     </OutsideClickHandler>
   );
