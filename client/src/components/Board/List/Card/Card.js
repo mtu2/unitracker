@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Card.module.scss";
+import { Draggable } from "react-beautiful-dnd";
 
 import DropdownMenu from "../../../UI/DropdownMenu/DropdownMenu";
 import DropdownMenuItem from "../../../UI/DropdownMenu/DropdownMenuItem/DropdownMenuItem";
@@ -25,37 +26,48 @@ function Card(props) {
   // Render Card if edit not open
   if (!openEdit)
     return (
-      <div
-        className={styles.card}
-        style={{
-          background: props.color,
-          color: textColorFromBgColor(props.color),
+      <Draggable draggableId={props._id} index={props.index}>
+        {(provided, snapshot) => {
+          const style = {
+            background: props.color,
+            color: textColorFromBgColor(props.color),
+            ...provided.draggableProps.style,
+          };
+          return (
+            <div
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              ref={provided.innerRef}
+              className={styles.card}
+              style={style}
+            >
+              <DropdownMenu
+                icon={<MoreHorizIcon />}
+                className={`${styles.menu} ${
+                  focusMenu ? styles.focused : styles.unfocused
+                }`}
+                onOpen={() => setFocusMenu(true)}
+                onClose={() => setFocusMenu(false)}
+              >
+                <DropdownMenuItem
+                  icon={<EditIcon />}
+                  text="Edit Card"
+                  onClick={() => setOpenEdit(true)}
+                />
+                <DropdownMenuItem
+                  icon={<DeleteIcon />}
+                  text="Delete Card"
+                  styling="red"
+                  onClick={() => props.deleteCard(props._id)}
+                />
+              </DropdownMenu>
+              <p className={styles.subject}>{props.subject}</p>
+              <p className={styles.description}>{props.description}</p>
+              <p className={styles.dueDate}>{formatDates(props.dueDate)}</p>
+            </div>
+          );
         }}
-      >
-        <DropdownMenu
-          icon={<MoreHorizIcon />}
-          className={`${styles.menu} ${
-            focusMenu ? styles.focused : styles.unfocused
-          }`}
-          onOpen={() => setFocusMenu(true)}
-          onClose={() => setFocusMenu(false)}
-        >
-          <DropdownMenuItem
-            icon={<EditIcon />}
-            text="Edit Card"
-            onClick={() => setOpenEdit(true)}
-          />
-          <DropdownMenuItem
-            icon={<DeleteIcon />}
-            text="Delete Card"
-            styling="red"
-            onClick={() => props.deleteCard(props._id)}
-          />
-        </DropdownMenu>
-        <p className={styles.subject}>{props.subject}</p>
-        <p className={styles.description}>{props.description}</p>
-        <p className={styles.dueDate}>{formatDates(props.dueDate)}</p>
-      </div>
+      </Draggable>
     );
 
   // Render EditCard if edit open
@@ -208,4 +220,4 @@ function EditCard(props) {
   );
 }
 
-export default Card;
+export default React.memo(Card);

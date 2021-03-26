@@ -19,9 +19,11 @@ const DropdownMenu = (props) => {
     <div className={`${styles.dropdownMenu} ${props.className}`}>
       <OutsideClickHandler onOutsideClick={onClose}>
         <div onClick={() => (open ? onClose() : onOpen())}>{props.icon}</div>
-        <Fade in={open}>
-          <div className={styles.dropdown}>{props.children}</div>
-        </Fade>
+        {open && (
+          <Fade in={open}>
+            <div className={styles.dropdown}>{props.children}</div>
+          </Fade>
+        )}
       </OutsideClickHandler>
     </div>
   );

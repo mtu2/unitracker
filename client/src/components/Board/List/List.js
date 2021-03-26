@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./List.module.scss";
+import { Droppable } from "react-beautiful-dnd";
 
 import Card from "./Card/Card";
 import AddCard from "./AddCard/AddCard";
@@ -14,10 +15,10 @@ import { ReactComponent as DeleteForeverIcon } from "../../../assets/icons/delet
 
 function List(props) {
   const [cards, setCards] = useState([]);
-  console.log("List rendered");
 
   useEffect(() => {
     setCards(props.cards);
+    console.log("list rendered");
   }, [props.cards]);
 
   // async function fetchCardsData() {
@@ -51,6 +52,7 @@ function List(props) {
   return (
     <div className={styles.list}>
       <h1>{props.name}</h1>
+
       <DropdownMenu icon={<MoreHorizIcon />} className={styles.menu}>
         <DropdownMenuItem icon={<RearrangeIcon />} text="Move List" />
         <DropdownMenuItem icon={<EditIcon />} text="Rename List" />
@@ -60,14 +62,24 @@ function List(props) {
           styling="red"
         />
       </DropdownMenu>
-      {cards.map((cardData, index) => (
-        <Card
-          key={index}
-          {...cardData}
-          deleteCard={handleDeleteCard}
-          updateCard={handleUpdateCard}
-        />
-      ))}
+
+      <Droppable droppableId={props._id}>
+        {(provided) => (
+          <div ref={provided.innerRef} {...provided.droppableProps}>
+            {cards.map((cardData, index) => (
+              <Card
+                key={index}
+                index={index}
+                {...cardData}
+                deleteCard={handleDeleteCard}
+                updateCard={handleUpdateCard}
+              />
+            ))}
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
+
       <AddCard createCard={handleCreateCard} />
     </div>
   );
